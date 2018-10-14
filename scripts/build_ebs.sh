@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # PATHS
-DIR_AWS=/var/www/html/aws
+DIR_AWS=/var/www/html/infra/AWSInfra
 
 DIR_AWS_DOCKER=$DIR_AWS/docker
 DIR_AWS_BUILD=$DIR_AWS/build
