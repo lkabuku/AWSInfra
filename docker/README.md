@@ -80,4 +80,4 @@ aws ecr list-images --repository-name skopiteam
 
 * eb ssh
 * eb configure
-* ssh -i sshlkabuku.pem ec2-user@ec2-34-248-50-156.eu-west-1.compute.amazonaws.com
+* ssh -i ssh***.pem ec2-user@***
