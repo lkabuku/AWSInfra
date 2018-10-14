@@ -35,6 +35,8 @@ RUN chown www-data:www-data /opt/downloads/mysql-connector-java-5.1.46.jar
 
 COPY /load/credentials_DB /opt/downloads/credentials_DB
 
+COPY /load/dbconfig.xml /opt/downloads/dbconfig.xml
+
 # To prevent caching when rebuilding the image,
 # the update and install command must be in the same RUN.
 # See https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#run
@@ -107,13 +109,14 @@ RUN apt-get update && \
 
 
 ### Install Java ###
-RUN apt-get install -y software-properties-common python-software-properties && \
-    apt-get update && \
-    add-apt-repository ppa:webupd8team/java && \
-    apt-get update && \
-    apt-get install default-jre -y && \
-    apt-get install -y oracle-java8-installer && \
-    apt-get install -y oracle-java8-set-default
+RUN apt-get install -y software-properties-common python-software-properties
+RUN add-apt-repository ppa:webupd8team/java -y && apt-get update
+
+RUN echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
+RUN echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 seen true" | debconf-set-selections
+
+RUN apt-get install -y oracle-java8-installer
+RUN apt-get install -y oracle-java8-set-default
 
 EXPOSE 80 443 8080 8088
 

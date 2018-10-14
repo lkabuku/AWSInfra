@@ -16,7 +16,7 @@ docker build -t app_jira  -f ./Dockerfile .
 ## Lancer le container 'app_jira:latest '
 ```
 docker run -d app_jira:latest 
-docker run -d -p 80:80 app_jira:latest 
+docker run -d -p 80:80 -p 8080:8080 -p 8088:8088 app_jira:latest 
 ```
 
 ## Aller dans le container
