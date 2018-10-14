@@ -1,0 +1,28 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "846572358120.dkr.ecr.eu-west-1.amazonaws.com/skopiteam:app_jira",
+    "Update": "true"
+  },
+  "Volumes" : [
+    {
+      "ContainerDirectory": "/var/log/apache2/",
+      "HostDirectory": "/var/log/apache2/"
+    }
+  ],
+  "Ports": [
+    {
+      "ContainerPort": "80"
+    },
+    {
+      "ContainerPort": "443"
+    },
+    {
+      "ContainerPort": "8080"
+    },
+    {
+      "ContainerPort": "8088"
+    }
+  ],
+  "Logging": "/var/log/nginx"
+}
