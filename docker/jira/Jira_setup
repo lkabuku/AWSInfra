@@ -14,12 +14,12 @@ Ports: 8080 and 8088
 ```
 sudo mv /opt/downloads/mysql-connector-java-5.1.46.jar /opt/atlassian/jira/lib/mysql-connector-java-5.1.46.jar
 sudo mv /opt/downloads/mysql-connector-java-5.1.46-bin.jar /opt/atlassian/jira/lib/mysql-connector-java-5.1.46-bin.jar
+export CLASSPATH=/opt/atlassian/jira/lib/mysql-connector-java-5.1.46.jar:$CLASSPATH
 ```
 
 ### Configure credentials for jira database
-```export CLASSPATH=/opt/atlassian/jira/lib/mysql-connector-java-5.1.46.jar:$CLASSPATH
+```
 sudo mv /opt/downloads/dbconfig.xml /var/atlassian/application-data/jira/dbconfig.xml
-
 sudo sh /opt/atlassian/jira/bin/config.sh
 ```
 

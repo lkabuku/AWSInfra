@@ -12,15 +12,19 @@
   ],
   "Ports": [
     {
+      "hostPort": "80",
       "ContainerPort": "80"
     },
     {
+      "hostPort": "443",
       "ContainerPort": "443"
     },
     {
+      "hostPort": "8080",
       "ContainerPort": "8080"
     },
     {
+      "hostPort": "8088",
       "ContainerPort": "8088"
     }
   ],
