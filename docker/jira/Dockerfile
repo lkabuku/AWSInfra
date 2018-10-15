@@ -2,7 +2,7 @@ FROM debian:jessie
 # Use jessie for Apache2.4 . Whith weezy : Apache2.2
 LABEL Description="This image is for building JIRA"
 
-MAINTAINER Team Skopitone <skopiteam@gmail.com>
+MAINTAINER Team Lucien Kabuku <lucien.kabuku@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -14,7 +14,7 @@ RUN export https_proxy
 
 ### WEB DIRECTORIES ###
 
-RUN mkdir -p /var/www/html/skopitone
+RUN mkdir -p /var/www/html/jira
 
 ### DOWNLOADS DIRECTORIES ###
 
@@ -33,9 +33,12 @@ RUN chown www-data:www-data /opt/downloads/mysql-connector-java-5.1.46-bin.jar
 COPY /load/mysql-connector-java-5.1.46.jar /opt/downloads/mysql-connector-java-5.1.46.jar
 RUN chown www-data:www-data /opt/downloads/mysql-connector-java-5.1.46.jar
 
+### ADD FILES
 COPY /load/credentials_DB /opt/downloads/credentials_DB
+COPY /load/dbconfig.xml /opt/downloads/dbconfig.
 
-COPY /load/dbconfig.xml /opt/downloads/dbconfig.xml
+RUN mkdir /var/www/html/jira/config
+COPY /load/check_connection.php /var/www/html/jira/config/check_connection.php
 
 # To prevent caching when rebuilding the image,
 # the update and install command must be in the same RUN.

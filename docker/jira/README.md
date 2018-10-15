@@ -27,8 +27,8 @@ docker exec -itu root {CONTAINER ID} /bin/bash --login
 
 ## Déploiement de l'image (app_jira) chez AWS Registry
 ```
-docker tag IMAGE_BASIC_ID ***.dkr.ecr.eu-west-1.amazonaws.com/***:app_jira
-docker push ***.dkr.ecr.eu-west-1.amazonaws.com/***:app_jira
+docker tag IMAGE_BASIC_ID ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/REPOSITORY_ID:app_jira
+docker push ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/REPOSITORY_ID:app_jira
 ```
 
 ## Connexion SSH à AWS EBS

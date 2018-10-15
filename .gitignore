@@ -8,3 +8,4 @@ docker/jira/load/credentials_DB
 docker/jira/load/mysql-connector-java-5.1.46-bin.jar
 docker/jira/load/mysql-connector-java-5.1.46.jar
 docker/jira/load/dbconfig.xml
+docker/jira/load/check_connection.php
