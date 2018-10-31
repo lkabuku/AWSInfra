@@ -37,8 +37,8 @@ RUN apt-get install -y git php5 libapache2-mod-php5 php5-mcrypt php5-mysql
 RUN echo "deb http://http.us.debian.org/debian sid main non-free contrib" >> /etc/apt/sources.list.d/dotdeb.org.list
 RUN apt-get update
 
-COPY /load/apache2.conf /etc/apache2/apache2.conf
-COPY /load/ports.conf /etc/apache2/ports.conf
+#COPY /load/apache2.conf /etc/apache2/apache2.conf
+#COPY /load/ports.conf /etc/apache2/ports.conf
 COPY /load/vhosts.conf /etc/apache2/sites-available/vhosts.conf
 RUN a2ensite vhosts.conf
 

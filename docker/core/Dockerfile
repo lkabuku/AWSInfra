@@ -1,6 +1,6 @@
 FROM debian:jessie
 # Use jessie for Apache2.4 . Whith weezy : Apache2.2
-LABEL Description="This image is for building JIRA"
+LABEL Description="This image is for building CORE"
 
 MAINTAINER Team Lucien Kabuku <lucien.kabuku@gmail.com>
 
@@ -12,33 +12,15 @@ RUN export HTTPS_PROXY
 RUN export http_proxy
 RUN export https_proxy
 
+
+### SECRET AWS ###
+
+RUN mkdir -p /opt/secret_aws
+COPY /load/utilities /opt/secret_aws/utilities
+
 ### WEB DIRECTORIES ###
 
-RUN mkdir -p /var/www/html/jira
-
-### DOWNLOADS DIRECTORIES ###
-
-RUN mkdir -p /opt/downloads
-
-### ATLASSIAN JIRA SOFTWARE ###
-
-COPY /load/atlassian-jira-software-7.9.1-x64.bin /opt/downloads/atlassian-jira-software-7.9.1-x64.bin
-RUN chown www-data:www-data /opt/downloads/atlassian-jira-software-7.9.1-x64.bin
-RUN chmod a+x /opt/downloads/atlassian-jira-software-7.9.1-x64.bin
-
-### MYSQL CONNECTOR JAVA 5.1 ###
-COPY /load/mysql-connector-java-5.1.46-bin.jar /opt/downloads/mysql-connector-java-5.1.46-bin.jar
-RUN chown www-data:www-data /opt/downloads/mysql-connector-java-5.1.46-bin.jar
-
-COPY /load/mysql-connector-java-5.1.46.jar /opt/downloads/mysql-connector-java-5.1.46.jar
-RUN chown www-data:www-data /opt/downloads/mysql-connector-java-5.1.46.jar
-
-### ADD FILES
-COPY /load/credentials_DB /opt/downloads/credentials_DB
-COPY /load/dbconfig.xml /opt/downloads/dbconfig.xml
-
-RUN mkdir /var/www/html/jira/config
-COPY /load/check_connection.php /var/www/html/jira/config/check_connection.php
+RUN mkdir -p /var/www/html/core
 
 # To prevent caching when rebuilding the image,
 # the update and install command must be in the same RUN.
@@ -59,8 +41,6 @@ RUN apt-get update
 COPY /load/apache2.conf /etc/apache2/apache2.conf
 COPY /load/ports.conf /etc/apache2/ports.conf
 COPY /load/vhosts.conf /etc/apache2/sites-available/vhosts.conf
-RUN a2ensite vhosts.conf
-
 
 ### Configuration Apache ###
 
@@ -107,11 +87,8 @@ RUN apt-get update && \
 
 # nscd : caching of DNS request
 
-# Clean apt repository
-#RUN apt-get clean && apt-get autoclean && apt-get autoremove
-
-
 ### Install Java ###
+
 RUN apt-get install -y software-properties-common python-software-properties
 RUN add-apt-repository ppa:webupd8team/java -y && apt-get update
 
@@ -120,7 +97,3 @@ RUN echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 seen true" 
 
 RUN apt-get install -y oracle-java8-installer
 RUN apt-get install -y oracle-java8-set-default
-
-EXPOSE 80 443 8080 8088
-
-CMD rm -f "$APACHE_PID_FILE" && /usr/sbin/apache2ctl -D FOREGROUND

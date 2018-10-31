@@ -9,3 +9,13 @@ docker/jira/load/mysql-connector-java-5.1.46-bin.jar
 docker/jira/load/mysql-connector-java-5.1.46.jar
 docker/jira/load/dbconfig.xml
 docker/jira/load/check_connection.php
+
+docker/core/load/credentials
+
+docker/jira-atlassian/load/atlassian-jira-software-7.9.1-x64.bin
+docker/jira-atlassian/load/credentials_DB
+docker/jira-atlassian/load/mysql-connector-java-5.1.46-bin.jar
+docker/jira-atlassian/load/mysql-connector-java-5.1.46.jar
+docker/jira-atlassian/load/dbconfig.xml
+docker/jira-atlassian/load/check_connection.php
+
